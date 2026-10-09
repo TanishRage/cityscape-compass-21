@@ -22,7 +22,7 @@ export const Route = createFileRoute("/plan")({
 
 const catColor: Record<Category, string> = { attraction: "#e76f51", food: "#f4a261", hotel: "#457b9d", heritage: "#c9a227", park: "#2a9d8f", budget: "#6a994e" };
 const fmt = (m: number) => `${Math.floor(m / 60)}h ${String(m % 60).padStart(2, "0")}m`;
-const clock = (start: string, off: number) => { const [h, m] = start.split(":").map(Number); const t = h * 60 + m + off; return `${String(Math.floor(t / 60) % 24).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`; };
+const clock = (start: string, off: number) => { const [h = 9, m = 0] = start.split(":").map(Number); const t = h * 60 + m + off; return `${String(Math.floor(t / 60) % 24).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`; };
 
 function Plan() {
   const run = useServerFn(planItinerary);
