@@ -72,11 +72,11 @@ function RootComponent() {
                 activeProps={{ className: "bg-secondary !text-foreground" }}>{n.label}</Link>
             ))}
           </nav>
-          <span className="ml-auto chip"><span className="h-2 w-2 animate-pulse rounded-full bg-success" />Mumbai · live</span>
+          <span className="ml-auto chip"><span className="h-2 w-2 animate-pulse rounded-full bg-success" />Pune</span>
         </div>
       </header>
       <main className="mx-auto max-w-7xl px-4 py-8"><Outlet /></main>
-      <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">CityPulse · demo data for Mumbai</footer>
+      <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">CityPulse · Pune, Maharashtra · map © OpenStreetMap contributors · safety & insight feeds are simulated</footer>
     </QueryClientProvider>
   );
 }

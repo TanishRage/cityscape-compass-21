@@ -5,7 +5,7 @@ import { feed as seed, trafficByHour, type FeedItem, type Source } from "@/lib/c
 export const Route = createFileRoute("/insights")({
   head: () => ({
     meta: [
-      { title: "Live City Insights — CityPulse" },
+      { title: "Pune Live City Insights — CityPulse" },
       { name: "description", content: "Traffic, weather alerts, citizen reports, photos, voice notes and social posts in one verified feed." },
       { property: "og:title", content: "Live City Insights — CityPulse" },
       { property: "og:description", content: "Verified, real-time city signals turned into action." },
@@ -51,7 +51,7 @@ function Insights() {
         <Stat label="City mood" value={`${mood}%`} sub="from sentiment analysis" tone="var(--success)" />
         <Stat label="Signals today" value={`${items.length * 137}`} sub="across 6 sources" tone="var(--primary)" />
       </div>
-      <div className="panel border-primary/40 bg-primary/10 p-4 text-sm"><b className="text-primary">Smart recommendation:</b> Rain + Sion flooding expected — head out before 3:30 PM, take the Western line, and swap outdoor plans for CST & Britannia & Co. indoors.</div>
+      <div className="panel border-primary/40 bg-primary/10 p-4 text-sm"><b className="text-primary">Smart recommendation:</b> Rain + University Circle waterlogging reported — head out early, avoid Ganeshkhind Road, and swap outdoor plans for Aga Khan Palace or the Kelkar Museum. (Simulated demo feed.)</div>
 
       <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
         <div className="space-y-4">
