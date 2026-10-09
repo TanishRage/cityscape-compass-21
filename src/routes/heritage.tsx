@@ -1,46 +1,49 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { places } from "@/lib/city-data";
+import { directionsUrl, inCategory, places } from "@/lib/places";
 
 export const Route = createFileRoute("/heritage")({
   head: () => ({
     meta: [
-      { title: "History & Culture — CityPulse Mumbai" },
-      { name: "description", content: "Heritage sites, landmarks and living traditions of Mumbai." },
-      { property: "og:title", content: "History & Culture — CityPulse" },
-      { property: "og:description", content: "Explore Mumbai's landmarks, UNESCO sites and local traditions." },
+      { title: "Pune History & Culture — CityPulse" },
+      { name: "description", content: "Peshwa-era wadas, forts, temples and living traditions of Pune." },
+      { property: "og:title", content: "Pune History & Culture — CityPulse" },
+      { property: "og:description", content: "Explore Pune's heritage sites, history timeline and local traditions." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Heritage,
 });
 
 const timeline = [
-  { y: "250 BCE", t: "Kanheri Caves carved by Buddhist monks" },
-  { y: "1534", t: "Portuguese take the seven islands" },
-  { y: "1661", t: "Islands gifted to Britain as dowry" },
-  { y: "1887", t: "Victoria Terminus (CST) completed" },
-  { y: "1924", t: "Gateway of India opened" },
-  { y: "1995", t: "City renamed Mumbai" },
+  { y: "8th c.", t: "Pataleshwar rock-cut temple carved" },
+  { y: "1630s", t: "Young Shivaji and Jijabai live at Lal Mahal" },
+  { y: "1670", t: "Tanaji Malusare captures Sinhagad (Kondhana)" },
+  { y: "1732", t: "Shaniwar Wada completed for Peshwa Bajirao I" },
+  { y: "1818", t: "Battle of Koregaon; Peshwa rule ends, British take Pune" },
+  { y: "1892", t: "Aga Khan Palace built" },
+  { y: "1893", t: "Lokmanya Tilak popularises public Ganeshotsav" },
 ];
 
 const traditions = [
-  { n: "Ganesh Chaturthi", d: "10-day festival with massive idols and sea immersions (Aug–Sep).", e: "🪔" },
-  { n: "Dabbawalas", d: "130-year-old lunchbox network delivering 200,000 meals a day.", e: "🍱" },
-  { n: "Irani cafés", d: "Bun maska and chai in bentwood-chair cafés from the 1900s.", e: "☕" },
-  { n: "Koli fishing culture", d: "The city's original inhabitants, still fishing from Worli & Versova.", e: "🎣" },
+  { n: "Ganeshotsav", d: "Public Ganesh festival with the five 'manache' Ganpatis led by Kasba Ganpati.", e: "🪔" },
+  { n: "Palkhi procession", d: "Warkaris pass through Pune each year on the pilgrimage to Pandharpur.", e: "🚩" },
+  { n: "Sawai Gandharva festival", d: "Long-running Hindustani classical music festival held in Pune.", e: "🎶" },
+  { n: "Misal & bakarwadi", d: "Spicy misal pav and Chitale's bakarwadi are the city's signature bites.", e: "🌶️" },
 ];
 
 function Heritage() {
-  const sites = places.filter((p) => p.category === "heritage");
+  const sites = places.filter((p) => inCategory(p, "heritage"));
   return (
     <div className="space-y-10">
-      <header><h1 className="text-4xl font-extrabold">History & Culture</h1><p className="mt-2 text-muted-foreground">Two millennia on seven islands.</p></header>
+      <header><h1 className="text-4xl font-extrabold">History & Culture</h1><p className="mt-2 text-muted-foreground">From rock-cut temples to the Peshwa capital.</p></header>
       <section className="grid gap-4 md:grid-cols-3">
         {sites.map((s) => (
           <article key={s.id} className="panel p-5">
-            <p className="text-xs text-warning">{s.area}</p>
+            <p className="text-xs text-warning">{s.locality}</p>
             <h3 className="mt-1 text-xl font-bold">{s.name}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{s.blurb}</p>
-            <div className="mt-3 flex gap-1">{s.tags.map((t) => <span key={t} className="chip !py-0.5 !text-[10px]">{t}</span>)}</div>
+            <p className="mt-2 text-sm text-muted-foreground">{s.description}</p>
+            <a href={directionsUrl(s)} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-xs font-medium text-primary hover:underline">Directions ↗</a>
           </article>
         ))}
       </section>

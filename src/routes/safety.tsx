@@ -6,7 +6,7 @@ import { hotspots, kindMeta, type ReportKind } from "@/lib/city-data";
 export const Route = createFileRoute("/safety")({
   head: () => ({
     meta: [
-      { title: "Safety Map & Safer Routes — CityPulse" },
+      { title: "Pune Safety Map & Safer Routes — CityPulse" },
       { name: "description", content: "Unsafe areas, accident-prone zones, flooding and safer route suggestions." },
       { property: "og:title", content: "Safety Map — CityPulse" },
       { property: "og:description", content: "See reported hotspots and get a safer route across the city." },
@@ -16,11 +16,10 @@ export const Route = createFileRoute("/safety")({
 });
 
 const spots = {
-  Colaba: [60, 90], Churchgate: [48, 76], Dadar: [46, 58], Bandra: [30, 46], Andheri: [34, 32], Kurla: [56, 44], Borivali: [48, 10],
+  Hinjewadi: [12, 30], Aundh: [32, 30], Shivajinagar: [46, 44], 'Swargate': [50, 62], 'Koregaon Park': [66, 42], Hadapsar: [82, 66], Kothrud: [28, 56], Katraj: [50, 88],
 } as Record<string, [number, number]>;
 
 const routes: Record<string, { fast: [number, number][]; safe: [number, number][]; avoided: string[] }> = {
-  "Andheri→Colaba": { fast: [[34,32],[46,36],[50,52],[48,59],[55,69],[60,90]], safe: [[34,32],[30,46],[40,58],[44,70],[48,76],[60,90]], avoided: ["Sion Circle flooding", "Hindmata waterlogging", "Grant Rd underpass"] },
 };
 
 function route(from: string, to: string) {
@@ -35,8 +34,8 @@ function route(from: string, to: string) {
 
 function Safety() {
   const [filter, setFilter] = useState<ReportKind | "all">("all");
-  const [from, setFrom] = useState("Andheri");
-  const [to, setTo] = useState("Colaba");
+  const [from, setFrom] = useState("Hinjewadi");
+  const [to, setTo] = useState("Hadapsar");
   const [sel, setSel] = useState<string | null>(null);
   const r = route(from, to);
   const shown = hotspots.filter((h) => filter === "all" || h.kind === filter);
