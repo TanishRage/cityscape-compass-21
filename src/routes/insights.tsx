@@ -57,7 +57,7 @@ function Insights() {
         <div className="space-y-4">
           <form onSubmit={submit} className="panel space-y-3 p-4">
             <h2 className="font-bold">Report something</h2>
-            <textarea value={text} onChange={(e) => setText(e.target.value)} maxLength={300} placeholder="e.g. Road blocked by waterlogging near Andheri subway" className="h-20 w-full rounded-md border border-input bg-secondary p-3 text-sm" />
+            <textarea value={text} onChange={(e) => setText(e.target.value)} maxLength={300} placeholder="e.g. Road blocked by waterlogging near Deccan bus stop" className="h-20 w-full rounded-md border border-input bg-secondary p-3 text-sm" />
             <div className="flex flex-wrap gap-2">
               <input value={area} onChange={(e) => setArea(e.target.value)} maxLength={60} placeholder="Area" className="flex-1 rounded-md border border-input bg-secondary px-3 py-2 text-sm" />
               <select value={src} onChange={(e) => setSrc(e.target.value as Source)} className="rounded-md border border-input bg-secondary px-3 py-2 text-sm">
