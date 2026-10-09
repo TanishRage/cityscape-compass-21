@@ -26,7 +26,7 @@ const routes: Record<string, { fast: [number, number][]; safe: [number, number][
 function route(from: string, to: string) {
   const key = `${from}→${to}`;
   if (routes[key]) return routes[key];
-  const a = spots[from] ?? [50, 50], b = spots[to] ?? [50, 50];
+  const a: [number, number] = spots[from] ?? [50, 50], b: [number, number] = spots[to] ?? [50, 50];
   const mid: [number, number] = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
   const near = hotspots.filter((h) => Math.hypot(h.x - mid[0], h.y - mid[1]) < 14);
   const offset: [number, number] = [mid[0] - 10, mid[1]];
