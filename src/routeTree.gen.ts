@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as HeritageRouteImport } from './routes/heritage'
 import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as PlanRouteImport } from './routes/plan'
 import { Route as SafetyRouteImport } from './routes/safety'
 
 const IndexRoute = IndexRouteImport.update({
@@ -35,6 +36,11 @@ const InsightsRoute = InsightsRouteImport.update({
   path: '/insights',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlanRoute = PlanRouteImport.update({
+  id: '/plan',
+  path: '/plan',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SafetyRoute = SafetyRouteImport.update({
   id: '/safety',
   path: '/safety',
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/compare': typeof CompareRoute
   '/heritage': typeof HeritageRoute
   '/insights': typeof InsightsRoute
+  '/plan': typeof PlanRoute
   '/safety': typeof SafetyRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/compare': typeof CompareRoute
   '/heritage': typeof HeritageRoute
   '/insights': typeof InsightsRoute
+  '/plan': typeof PlanRoute
   '/safety': typeof SafetyRoute
 }
 export interface FileRoutesById {
@@ -61,14 +69,22 @@ export interface FileRoutesById {
   '/compare': typeof CompareRoute
   '/heritage': typeof HeritageRoute
   '/insights': typeof InsightsRoute
+  '/plan': typeof PlanRoute
   '/safety': typeof SafetyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/compare' | '/heritage' | '/insights' | '/safety'
+  fullPaths: '/' | '/compare' | '/heritage' | '/insights' | '/plan' | '/safety'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/compare' | '/heritage' | '/insights' | '/safety'
-  id: '__root__' | '/' | '/compare' | '/heritage' | '/insights' | '/safety'
+  to: '/' | '/compare' | '/heritage' | '/insights' | '/plan' | '/safety'
+  id:
+    | '__root__'
+    | '/'
+    | '/compare'
+    | '/heritage'
+    | '/insights'
+    | '/plan'
+    | '/safety'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +92,7 @@ export interface RootRouteChildren {
   CompareRoute: typeof CompareRoute
   HeritageRoute: typeof HeritageRoute
   InsightsRoute: typeof InsightsRoute
+  PlanRoute: typeof PlanRoute
   SafetyRoute: typeof SafetyRoute
 }
 
@@ -109,6 +126,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsightsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/plan': {
+      id: '/plan'
+      path: '/plan'
+      fullPath: '/plan'
+      preLoaderRoute: typeof PlanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/safety': {
       id: '/safety'
       path: '/safety'
@@ -124,6 +148,7 @@ const rootRouteChildren: RootRouteChildren = {
   CompareRoute: CompareRoute,
   HeritageRoute: HeritageRoute,
   InsightsRoute: InsightsRoute,
+  PlanRoute: PlanRoute,
   SafetyRoute: SafetyRoute,
 }
 export const routeTree = rootRouteImport
