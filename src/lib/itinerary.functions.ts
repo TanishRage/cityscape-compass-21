@@ -23,7 +23,7 @@ export const planItinerary = createServerFn({ method: "POST" })
     if (bad) return { ok: false, kind: "input", message: bad };
     const pool = candidates(data);
     if (!pool.length) return { ok: false, kind: "infeasible", message: data.budget === 0 ? "No places with verified free entry match these interests. Raise the budget or add Heritage/Parks." : "No places match these interests." };
-    const key = process.env.LOVABLE_API_KEY;
+    const key = process.env['LOVABLE_API_KEY'];
     if (!key) return { ok: false, kind: "config", message: "AI is not configured (missing API key)." };
 
     const list = pool.map((p) => ({ id: p.id, name: p.name, category: p.category, locality: p.locality, lat: p.lat, lng: p.lng, price: p.price ?? "unavailable", about: p.description }));

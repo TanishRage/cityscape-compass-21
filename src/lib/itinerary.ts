@@ -46,7 +46,7 @@ export function validatePlan(i: PlanInput, ai: AiStop[], summary: string): PlanR
     if (!place || seen.has(s.placeId)) continue; // drop unknown/duplicate places
     seen.add(s.placeId);
     const visit = Math.min(240, Math.max(20, Math.round(s.visitMinutes)));
-    const travel = stops.length ? travelMinutes(stops[stops.length - 1].place, place) : 0;
+    const travel = stops.length ? travelMinutes(stops[stops.length - 1]!.place, place) : 0;
     t += travel;
     stops.push({ place, visitMinutes: visit, travelMinutes: travel, startOffset: t, cost: priceOf(place), reason: s.reason });
     t += visit;
